@@ -3,7 +3,7 @@ import { LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { Construct } from 'constructs';
 
 interface APIStackProps extends Partial<StackProps> {
-  helloLambdaIntegration: LambdaIntegration;
+  spacesLambdaIntegration: LambdaIntegration;
 }
 
 export class APIStack extends Stack {
@@ -12,6 +12,7 @@ export class APIStack extends Stack {
 
     const api = new RestApi(this, 'SpacesAPI');
     const spaceResource = api.root.addResource('spaces');
-    spaceResource.addMethod('GET', props.helloLambdaIntegration);
+    spaceResource.addMethod('GET', props.spacesLambdaIntegration);
+    spaceResource.addMethod('POST', props.spacesLambdaIntegration);
   }
 }
